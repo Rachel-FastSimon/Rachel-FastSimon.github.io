@@ -1,8 +1,17 @@
 .fs_search_results_wrapper {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 20px;
 }
 .fs_product_image {
     width: -webkit-fill-available;
+}
+.fs_search_form {
+    margin: 25px;
+}
+.fs_collections_btn_wrapper {
+    margin: 25px;
+}
+.fs_search_results_title {
+    margin: 25px;
 }
