@@ -11,6 +11,10 @@
 }
 .fs_search_form {
     margin: 25px;
+    width: 100%;
+}
+#searchInput {
+    width: 85%;
 }
 .fs_collections_btn_wrapper {
     margin: 25px;
@@ -50,4 +54,10 @@
 }
 .fs_filter_checkbox_count {
     margin-left: 10px;
+}
+.fs_search_bar {
+    display: flex;
+}
+.fs_logo {
+    max-width: 180px;
 }
