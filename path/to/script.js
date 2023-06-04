@@ -16,6 +16,29 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 });
 
+// Define the valid sorting options
+const validSortOptions = [
+  "price_min_to_max",
+  "price_max_to_min",
+  "creation_date",
+  "creation_date_oldest",
+  "popularity",
+  "reviews",
+  "a_to_z",
+  "z_to_a",
+  "relevancy"
+];
+
+// Get the select element
+const sortBySelect = document.getElementById('sortBy');
+let sortBy = 'relevancy';
+// Event listener for when the selection changes
+sortBySelect.addEventListener('change', function () {
+  // Get the selected value
+  if(sortBySelect.value && validSortOptions.includes(sortBySelect.value)) {
+    sortBy = sortBySelect.value;
+  }
+});
 const fastSimonResponseAction = 'facets and products';
 const searchForm = document.getElementById('searchForm');
 const searchResultsContainer = document.getElementById('searchResults');
@@ -29,6 +52,7 @@ function smartCollectionsInit() {
     // showing All-products category
     categoryID: "292003643599",
     narrowBy: selectedFiltersAll,
+    sortBy: sortBy,
     callback: (response) => {
       console.log(response);
       // there are 2 actions: we use here only one that contains facets
@@ -49,6 +73,7 @@ function fullSearchInit() {
   window.FastSimonSDK.fullTextSearch({
     term: searchQuery,
     narrowBy: selectedFiltersAll,
+    sortBy: sortBy,
     callback: (response) => {
       console.log(response);
       // there are 2 actions: we use here only one that contains facets
@@ -179,7 +204,7 @@ function displayFilters(facets) {
   filtersContainer.innerHTML = '';
   for (let i = 0; i < facets.length; i++) {
     const facet = facets[i];
-    if(facet[0] == "Price_max" || facet[0] == "Price_min" || facet[0] == "Price" ) {
+    if (facet[0] == "Price_max" || facet[0] == "Price_min" || facet[0] == "Price") {
       continue;
     }
     // Create a container div for the filter
@@ -263,33 +288,27 @@ function displayFilters(facets) {
       unselectedFilters.push(value);
       const jsonunselectedFilters = JSON.stringify(unselectedFilters);
       // selectedFiltersAll.push(unselectedFilters);
-      for(let i = 0; i < selectedFiltersAll.length; i++){ 
+      for (let i = 0; i < selectedFiltersAll.length; i++) {
         console.log('compare', selectedFiltersAll[i], unselectedFilters);
-      const jsonunselectedFilters = JSON.stringify(unselectedFilters);
-        if ( JSON.stringify(selectedFiltersAll[i]) == jsonunselectedFilters) { 
-          selectedFiltersAll.splice(i, 1); 
+        const jsonunselectedFilters = JSON.stringify(unselectedFilters);
+        if (JSON.stringify(selectedFiltersAll[i]) == jsonunselectedFilters) {
+          selectedFiltersAll.splice(i, 1);
         }
-    }
+      }
       // localStorage.setItem('savedFacets', JSON.stringify(facets));
       console.log('selectedFilters', selectedFiltersAll);
       saveCheckboxState();
     }
-      if (searchResultsContainer.classList.contains('fs_search')) {
-        fullSearchInit();
-      } else {
-        smartCollectionsInit();
-      }
-      // Filter items based on selectedValue
-      // Perform the necessary actions when the checkbox is checked
+    if (searchResultsContainer.classList.contains('fs_search')) {
+      fullSearchInit();
+    } else {
+      smartCollectionsInit();
+    }
+    // Filter items based on selectedValue
+    // Perform the necessary actions when the checkbox is checked
   }
   loadCheckboxState();
   localStorage.setItem('savedFacets', JSON.stringify(facets));
 }
 
-// Save the checkbox state when a checkbox is clicked
-// document.addEventListener('change', function(event) {
-//   if (event.target.matches('input[type="checkbox"]')) {
-//     saveCheckboxState();
-//   }
-// });
 

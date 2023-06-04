@@ -25,6 +25,18 @@
     <div class="fs_collections_btn_wrapper">Collections > 
         <button id="allProducts" class="fs_collections_btn">All products</button>
     </div>
+    <label for="sortBy">Sort by:</label>
+<select id="sortBy">
+  <option value="price_min_to_max">Price: Low to High</option>
+  <option value="price_max_to_min">Price: High to Low</option>
+  <option value="creation_date">Creation Date: Newest First</option>
+  <option value="creation_date_oldest">Creation Date: Oldest First</option>
+  <option value="popularity">Popularity</option>
+  <option value="reviews">Reviews</option>
+  <option value="a_to_z">Name: A to Z</option>
+  <option value="z_to_a">Name: Z to A</option>
+  <option value="relevancy">Relevance</option>
+</select>
     <div class="fs_filters_products_wrapper">
         <div id="filters" class="fs_filters_container"></div>
         <div id="searchResults" class="fs_search_results_container"></div>
