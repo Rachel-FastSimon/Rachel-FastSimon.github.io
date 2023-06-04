@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-  <title>SDK Sample</title>
-  <link rel="icon" type="image/png" href="images/favicon.png">
-  <link rel="stylesheet" href="path/to/styles.css">
-  <script src="https://assets.fastsimon.com/sdk/latest/fast_simon_sdk.js" defer></script>
+    <title>SDK Sample</title>
+    <link rel="icon" type="image/png" href="images/favicon.png">
+    <link rel="stylesheet" href="path/to/styles.css">
+    <script src="https://assets.fastsimon.com/sdk/latest/fast_simon_sdk.js" defer></script>
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             window.FastSimonSDK.initialization({
@@ -18,6 +19,7 @@
         });
     </script>
 </head>
+
 <body>
     <div class="fs_search_bar">
         <img src="images/fast_simon_logo.svg" alt="Fast Simon SDK sample" class="fs_logo">
@@ -26,26 +28,29 @@
             <button type="submit">Search</button>
         </form>
     </div>
-    <div class="fs_collections_btn_wrapper">Collections > 
+    <div class="fs_collections_btn_wrapper">Collections >
         <button id="allProducts" class="fs_collections_btn">All products</button>
     </div>
-    <label for="sortBy">Sort by:</label>
-<select id="sortBy">
-  <option value="price_min_to_max">Price: Low to High</option>
-  <option value="price_max_to_min">Price: High to Low</option>
-  <option value="creation_date">Creation Date: Newest First</option>
-  <option value="creation_date_oldest">Creation Date: Oldest First</option>
-  <option value="popularity">Popularity</option>
-  <option value="reviews">Reviews</option>
-  <option value="a_to_z">Name: A to Z</option>
-  <option value="z_to_a">Name: Z to A</option>
-  <option value="relevancy">Relevance</option>
-</select>
+    <div class="fs_sort_by_wrap">
+        <label for="sortBy" class="fs_sort_by_label">Sort by:</label>
+        <select id="sortBy" class="fs_sort_by_select">
+            <option value="price_min_to_max" class="fs_sort_by_option">Price: Low to High</option>
+            <option value="price_max_to_min" class="fs_sort_by_option">Price: High to Low</option>
+            <option value="creation_date" class="fs_sort_by_option">Creation Date: Newest First</option>
+            <option value="creation_date_oldest" class="fs_sort_by_option">Creation Date: Oldest First</option>
+            <option value="popularity" class="fs_sort_by_option">Popularity</option>
+            <option value="reviews" class="fs_sort_by_option">Reviews</option>
+            <option value="a_to_z" class="fs_sort_by_option">Name: A to Z</option>
+            <option value="z_to_a" class="fs_sort_by_option">Name: Z to A</option>
+            <option value="relevancy" class="fs_sort_by_option">Relevance</option>
+        </select>
+    </div>
     <div class="fs_filters_products_wrapper">
         <div id="filters" class="fs_filters_container"></div>
         <div id="searchResults" class="fs_search_results_container"></div>
     </div>
     <div id="recomResults" class="fs_recommendation_container"></div>
-  <script src="path/to/script.js"></script>
+    <script src="path/to/script.js"></script>
 </body>
+
 </html>

@@ -57,7 +57,11 @@
 }
 .fs_search_bar {
     display: flex;
+    margin: 25px;
 }
 .fs_logo {
     max-width: 180px;
+}
+.fs_sort_by_wrap {
+    margin: 25px;
 }
