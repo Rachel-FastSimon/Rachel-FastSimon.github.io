@@ -38,6 +38,11 @@ sortBySelect.addEventListener('change', function () {
   if(sortBySelect.value && validSortOptions.includes(sortBySelect.value)) {
     sortBy = sortBySelect.value;
   }
+  if (searchResultsContainer.classList.contains('fs_search')) {
+    fullSearchInit();
+  } else {
+    smartCollectionsInit();
+  }
 });
 const fastSimonResponseAction = 'facets and products';
 const searchForm = document.getElementById('searchForm');
