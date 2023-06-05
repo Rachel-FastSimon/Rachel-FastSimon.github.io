@@ -58,10 +58,26 @@
 .fs_search_bar {
     display: flex;
     margin: 25px;
+    align-items: flex-start;
 }
 .fs_logo {
     max-width: 180px;
+    margin: 25px;
 }
 .fs_sort_by_wrap {
     margin: 25px;
+}
+.fs_autocomplete_wrap {
+    width: 100%;
+}
+#productList {
+    display: flex;
+    width: 100%;
+}
+.fs_product_ac {
+    width: 10%;
+    list-style-type: none;
+}
+.fs_product_image_ac {
+    width: 100%;
 }

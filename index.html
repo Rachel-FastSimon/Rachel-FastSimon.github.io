@@ -23,10 +23,17 @@
 <body>
     <div class="fs_search_bar">
         <img src="images/fast_simon_logo.svg" alt="Fast Simon SDK sample" class="fs_logo">
-        <form id="searchForm" class="fs_search_form">
-            <input type="text" id="searchInput">
-            <button type="submit">Search</button>
-        </form>
+        <div class="fs_autocomplete_wrap">
+            <form id="searchForm" class="fs_search_form">
+                <input type="text" id="searchInput">
+                <button type="submit">Search</button>
+            </form>
+            <div id="productModal" class="modal">
+                <div class="modal-content">
+                    <ul id="productList"></ul>
+                </div>
+            </div>
+        </div>
     </div>
     <div class="fs_collections_btn_wrapper">Collections >
         <button id="allProducts" class="fs_collections_btn">All products</button>

@@ -1,9 +1,18 @@
+const fastSimonResponseAction = 'facets and products';
+const searchForm = document.getElementById('searchForm');
+const searchResultsContainer = document.getElementById('searchResults');
+const recommendationContainer = document.getElementById('recomResults');
+let selectedFiltersAll = [];
+let searchResults;
+let sortBy = 'relevancy';
 //show previous results after reloading
 document.addEventListener('DOMContentLoaded', function () {
   const savedResults = localStorage.getItem('searchResults');
   if (savedResults) {
     const results = JSON.parse(savedResults);
     displaySearchResults(results, searchResultsContainer);
+  } else {
+    smartCollectionsInit();
   }
 });
 //show previous filters after reloading
@@ -31,11 +40,10 @@ const validSortOptions = [
 
 // Get the select element
 const sortBySelect = document.getElementById('sortBy');
-let sortBy = 'relevancy';
 // Event listener for when the selection changes
 sortBySelect.addEventListener('change', function () {
   // Get the selected value
-  if(sortBySelect.value && validSortOptions.includes(sortBySelect.value)) {
+  if (sortBySelect.value && validSortOptions.includes(sortBySelect.value)) {
     sortBy = sortBySelect.value;
   }
   if (searchResultsContainer.classList.contains('fs_search')) {
@@ -44,12 +52,6 @@ sortBySelect.addEventListener('change', function () {
     smartCollectionsInit();
   }
 });
-const fastSimonResponseAction = 'facets and products';
-const searchForm = document.getElementById('searchForm');
-const searchResultsContainer = document.getElementById('searchResults');
-const recommendationContainer = document.getElementById('recomResults');
-let selectedFiltersAll = [];
-let searchResults;
 
 // SDK Fast Simon collections usage
 function smartCollectionsInit() {
@@ -99,15 +101,7 @@ searchForm.addEventListener('submit', function (event) {
     searchResultsContainer.classList.remove('fs_collections');
   }
   fullSearchInit();
-  //rec???
-  // window.FastSimonSDK.contentSearch({
-  //   query: searchQuery,
-  //   callback: (response) => {
-  //     console.log('rec', response);
-  //     searchResults = response.payload.products;
-  //     displaySearchResults(searchResults, recommendationContainer);
-  //   }
-  // });
+
 });
 
 const allProductsBtn = document.getElementById('allProducts');
@@ -174,6 +168,7 @@ function displaySearchResults(results, container, searchQuery) {
     searchResultsWrapper.appendChild(productContainer);
     container.appendChild(searchResultsWrapper);
   });
+  displayPopular();
   localStorage.setItem('searchResults', JSON.stringify(results));
 }
 
@@ -316,4 +311,79 @@ function displayFilters(facets) {
   localStorage.setItem('savedFacets', JSON.stringify(facets));
 }
 
+//Autocomplete
+const searchInput = document.getElementById('searchInput');
 
+searchInput.addEventListener('input', function (event) {
+  const searchTerm = event.target.value;
+  // Use the following code for every keystroke shoppers perform in a searchbox.
+  window.FastSimonSDK.instantSearch({
+    query: searchTerm,
+    callback: (response) => {
+      console.log(response);
+      displayAutocomplete(response.payload.products);
+    }
+  });
+  console.log(searchTerm);
+});
+function displayAutocomplete(response) {
+  productList.innerHTML = '';
+
+  // Add products to the modal
+  response.forEach(function (product) {
+    // Create a container for each product
+    const productContainer = document.createElement('li');
+    productContainer.classList.add('fs_product_ac');
+
+    // Add product information to the container
+    const productImage = document.createElement('img');
+    productImage.classList.add('fs_product_image_ac');
+    // product.t is an image URL
+    if (product.t) {
+      productImage.src = product.t;
+    } else {
+      productImage.src = 'https://acp-magento.appspot.com/images/missing.gif';
+    }
+
+    productContainer.appendChild(productImage);
+
+    if (product.l) {
+      const productName = document.createElement('h3');
+      productName.classList.add('fs_product_title_ac');
+      productName.textContent = product.l;
+      productContainer.appendChild(productName);
+    }
+
+    if (product.p && product.c) {
+      const productPrice = document.createElement('p');
+      productPrice.classList.add('fs_product_price_ac');
+      productPrice.textContent = `${product.p} ${product.c}`;
+      productContainer.appendChild(productPrice);
+    }
+
+
+    // Append the product container to the search results container
+    productList.appendChild(productContainer);
+  });
+
+  // Show the modal
+  productModal.style.display = 'block';
+}
+
+// Close the modal when the user clicks outside the modal
+window.addEventListener('click', function (event) {
+  if (event.target !== productModal) {
+    productModal.style.display = 'none';
+  }
+});
+
+//Popular products on serch or collection page
+function displayPopular() {
+  //Get All Popular Products
+  window.FastSimonSDK.getAllPopularProducts({
+    callback: (result) => {
+        // handle here
+        console.log('popular', result);
+    }
+  });
+}
