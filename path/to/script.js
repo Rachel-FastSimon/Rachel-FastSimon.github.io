@@ -168,7 +168,6 @@ function displaySearchResults(results, container, searchQuery) {
     searchResultsWrapper.appendChild(productContainer);
     container.appendChild(searchResultsWrapper);
   });
-  displayPopular();
   localStorage.setItem('searchResults', JSON.stringify(results));
 }
 
@@ -377,13 +376,3 @@ window.addEventListener('click', function (event) {
   }
 });
 
-//Popular products on serch or collection page
-function displayPopular() {
-  //Get All Popular Products
-  window.FastSimonSDK.getAllPopularProducts({
-    callback: (result) => {
-        // handle here
-        console.log('popular', result);
-    }
-  });
-}

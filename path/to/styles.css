@@ -7,7 +7,7 @@
     gap: 20px;
 }
 .fs_product_image {
-    width: -webkit-fill-available;
+    aspect-ratio: 1/1;
 }
 .fs_search_form {
     margin: 25px;
@@ -61,8 +61,23 @@
     align-items: flex-start;
 }
 .fs_logo {
-    max-width: 180px;
-    margin: 25px;
+    min-width: 180px;
+}
+.fs_logo_wrap {
+    margin: 25px 0;
+    display: flex;
+    flex-direction: column;
+}
+.fs_logo_text {
+    font-family: sans-serif !important;
+    text-align: center;
+    /* width: 100%; */
+    font-size: 16px;
+    font-weight: bold;
+    display: block;
+    margin-top: 5px;
+    border-bottom: 4px solid red;
+    padding-bottom: 2px;
 }
 .fs_sort_by_wrap {
     margin: 25px;
@@ -81,3 +96,77 @@
 .fs_product_image_ac {
     width: 100%;
 }
+.fs_search_form {
+display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.fs_search_form input[type="text"] {
+    padding: 8px;
+    border: none;
+    border-bottom: 2px solid black;
+    outline: none;
+    font-size: 16px;
+}
+
+.fs_search_form button[type="submit"] {
+    padding: 8px 16px;
+    background-color: red;
+    color: white;
+    border: none;
+    outline: none;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.fs_search_form button[type="submit"]:hover {
+    background-color: darkred;
+}
+.fs_collections_btn_wrapper {
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .fs_collections_btn {
+    padding: 8px 16px;
+    background-color: red;
+    color: white;
+    border: none;
+    outline: none;
+    font-size: 16px;
+    cursor: pointer;
+    margin-left: 15px;
+  }
+
+  .fs_collections_btn:hover {
+    background-color: darkred;
+  }
+
+  .fs_sort_by_wrap {
+    display: flex;
+    align-items: center;
+  }
+
+  .fs_sort_by_label {
+    color: black;
+    margin-right: 10px;
+    font-size: 16px;
+  }
+
+  .fs_sort_by_select {
+    padding: 6px;
+    background-color: red;
+    color: white;
+    border: none;
+    outline: none;
+    font-size: 16px;
+    cursor: pointer;
+  }
+
+  .fs_sort_by_option {
+    background-color: white;
+    color: black;
+  }
+
+  
