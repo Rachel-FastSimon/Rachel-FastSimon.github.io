@@ -3,15 +3,37 @@
 }
 .fs_search_results_wrapper {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+    gap: 10px;
 }
 .fs_product_image {
-    aspect-ratio: 1/1;
+    /* aspect-ratio: 1/1;
+    object-fit: contain; */
+    aspect-ratio: 0.75;
+    object-fit: cover;
+    width: 100%;
+}
+.fs_product_title, .fs_product_price {
+    margin: 13px 0;
+    font-weight: normal;
+}
+.fs_product_price {
+    margin-bottom: 0px;
+}
+.fs_product_title_ac {
+    margin: 8px 0 5px 0;
+}
+.fs_product_price_ac {
+    margin: 0;
+}
+.fs_product_title_ac , .fs_product_price_ac {
+    font-size: smaller;
+    font-weight: normal;
 }
 .fs_search_form {
     margin: 25px;
     width: 100%;
+    margin-bottom: 0;
 }
 #searchInput {
     width: 85%;
@@ -35,7 +57,7 @@
     flex-direction: row;
 }
 .fs_filters_container {
-    min-width: 300px;
+    min-width: 211px;
     height: fit-content;
     border: 1px solid gray;
     padding: 5px;
@@ -54,11 +76,16 @@
 }
 .fs_filter_checkbox_count {
     margin-left: 10px;
+    float: right;
+}
+.fs_filter_checkbox {
+    accent-color: red;
 }
 .fs_search_bar {
     display: flex;
     margin: 25px;
     align-items: flex-start;
+    margin-bottom:0;
 }
 .fs_logo {
     min-width: 180px;
@@ -87,19 +114,37 @@
 }
 #productList {
     display: flex;
-    width: 100%;
+    width: calc(100% - 49px);
+    border: 1px solid #6b6b6b;
+    margin-left: 40px;
+    padding-left: 0;
+    padding: 8px;
+    box-shadow: 0 0 6px #6b6b6b;
+    border-radius: 4px;
+}
+#productModal {
+    display: none;
 }
 .fs_product_ac {
-    width: 10%;
+    width: 15%;
     list-style-type: none;
+    padding-right: 1%;
+}
+.fs_product_title_ac {
+    overflow: hidden;
+   display: -webkit-box;
+   -webkit-line-clamp: 3; /* number of lines to show */
+           line-clamp: 3; 
+   -webkit-box-orient: vertical;
 }
 .fs_product_image_ac {
     width: 100%;
 }
 .fs_search_form {
-display: flex;
+    display: flex;
     align-items: center;
     justify-content: center;
+    width: 83%;
 }
 
 .fs_search_form input[type="text"] {
@@ -146,6 +191,11 @@ display: flex;
   .fs_sort_by_wrap {
     display: flex;
     align-items: center;
+    float: right;
+    margin-right: 0;
+  }
+  .fs_collections_btn_wrapper, .fs_sort_by_wrap {
+    margin-bottom: 0px;
   }
 
   .fs_sort_by_label {

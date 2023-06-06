@@ -376,3 +376,23 @@ window.addEventListener('click', function (event) {
   }
 });
 
+//EVENTS
+//Search Result page viewed
+// window.FastSimonSDK.event({
+//   eventName: window.FastSimonEventName.SearchPerformed,
+//   data: {
+//       query: searchQuery, // (Required)
+//       narrowBy: selectedFiltersAll,
+//       sortBy: sortBy
+//   }
+// });
+
+// //Collection Viewed
+// window.FastSimonSDK.event({
+//   eventName: window.FastSimonEventName.SmartCollectionPreformed,
+//   data: {
+//       categoryID: "292003643599", // (Required)
+//       narrowBy: selectedFiltersAll,
+//       sortBy: sortBy
+//   }
+// }); 
