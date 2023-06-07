@@ -72,6 +72,15 @@ function smartCollectionsInit() {
       }
     }
   });
+  //Collection Viewed event
+  window.FastSimonSDK.event({
+    eventName: window.FastSimonEventName.SmartCollectionPreformed,
+    data: {
+      categoryID: "292003643599", // (Required)
+      narrowBy: selectedFiltersAll,
+      sortBy: sortBy
+    }
+  });
 }
 
 // SDK Fast Simon search usage
@@ -91,7 +100,16 @@ function fullSearchInit() {
         displayFilters(searchFilters)
       }
     }
-  })
+  });
+  //Search Result page viewed event
+  window.FastSimonSDK.event({
+    eventName: window.FastSimonEventName.SearchPerformed,
+    data: {
+      query: searchQuery, // (Required)
+      narrowBy: selectedFiltersAll,
+      sortBy: sortBy
+    }
+  });
 }
 searchForm.addEventListener('submit', function (event) {
   event.preventDefault();
@@ -100,6 +118,7 @@ searchForm.addEventListener('submit', function (event) {
   if (searchResultsContainer.classList.contains('fs_collections')) {
     searchResultsContainer.classList.remove('fs_collections');
   }
+  selectedFiltersAll = [];
   fullSearchInit();
 
 });
@@ -113,6 +132,7 @@ allProductsBtn.addEventListener('click', function (event) {
   if (searchResultsContainer.classList.contains('fs_search')) {
     searchResultsContainer.classList.remove('fs_search');
   }
+  selectedFiltersAll = [];
   smartCollectionsInit();
 });
 
@@ -199,6 +219,11 @@ function loadCheckboxState() {
 function displayFilters(facets) {
   console.log('facets', facets);
   const filtersContainer = document.getElementById("filters");
+  if (facets.length > 0) {
+    filtersContainer.style.display = 'block';
+  } else {
+    filtersContainer.style.display = 'none';
+  }
   // Clear previous filters
   filtersContainer.innerHTML = '';
   for (let i = 0; i < facets.length; i++) {
@@ -257,18 +282,7 @@ function displayFilters(facets) {
   // Event listener for checkbox selection
 
   function handleCheckboxSelection(checkboxElement) {
-    const selectedValue = checkboxElement.value;
     const isChecked = checkboxElement.checked;
-
-    // Perform filtering based on the selected checkbox value
-    // You can implement your own filtering logic here
-    // if (localStorage.getItem('selectedFilters')) {
-    //   savedFilters = localStorage.getItem('selectedFilters');
-    //   if (savedFilters) {
-    //     selectedFiltersAll = JSON.parse(savedFilters);
-    //     // displayFilters(facets);
-    //   }
-    // }
     let key = checkboxElement.getAttribute("key");
     let value = checkboxElement.getAttribute("value");
     if (isChecked) {
@@ -366,7 +380,11 @@ function displayAutocomplete(response) {
   });
 
   // Show the modal
-  productModal.style.display = 'block';
+  if (response.length > 0) {
+    productModal.style.display = 'block';
+  } else {
+    productModal.style.display = 'none';
+  }
 }
 
 // Close the modal when the user clicks outside the modal
@@ -377,7 +395,7 @@ window.addEventListener('click', function (event) {
 });
 
 //EVENTS
-//Search Result page viewed
+// //Search Result page viewed
 // window.FastSimonSDK.event({
 //   eventName: window.FastSimonEventName.SearchPerformed,
 //   data: {
