@@ -1,14 +1,17 @@
 * {
-    font-family: 'Lato', sans-serif!important;
+    font-family: 'Lato', sans-serif !important;
 }
+
 .fs_search_results_wrapper {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
     gap: 10px;
 }
+
 .fs_product {
     max-width: 350px;
 }
+
 .fs_product_image {
     /* aspect-ratio: 1/1;
     object-fit: contain; */
@@ -16,46 +19,60 @@
     object-fit: cover;
     width: 100%;
 }
-.fs_product_title, .fs_product_price {
+
+.fs_product_title,
+.fs_product_price {
     margin: 13px 0;
     font-weight: normal;
 }
+
 .fs_product_price {
     margin-bottom: 0px;
 }
+
 .fs_product_title_ac {
     margin: 8px 0 5px 0;
 }
+
 .fs_product_price_ac {
     margin: 0;
 }
-.fs_product_title_ac , .fs_product_price_ac {
+
+.fs_product_title_ac,
+.fs_product_price_ac {
     font-size: smaller;
     font-weight: normal;
 }
+
 .fs_search_form {
     margin: 25px;
     width: 100%;
     margin-bottom: 0;
 }
+
 #searchInput {
     width: 85%;
 }
+
 .fs_collections_btn_wrapper {
     margin: 25px;
 }
+
 .fs_search_results_title {
     margin: 25px;
 }
+
 .fs_filter_container {
     display: flex;
     flex-direction: column;
     padding: 5px;
 }
+
 .fs_filters_products_wrapper {
     display: flex;
     flex-direction: row;
 }
+
 .fs_filters_container {
     min-width: 211px;
     height: fit-content;
@@ -64,39 +81,48 @@
     margin: 25px;
     display: none;
 }
+
 .fs_label_element {
-    color: red;
+    color: li;
     font-weight: bold;
     margin-bottom: 15px;
     font-size: 22px;
 }
+
 .fs_search_results_container {
     width: 100%;
 }
+
 .fs_filter_checkbox_wrap {
     margin-bottom: 3px;
 }
+
 .fs_filter_checkbox_count {
     margin-left: 10px;
     float: right;
 }
+
 .fs_filter_checkbox {
     accent-color: red;
 }
+
 .fs_search_bar {
     display: flex;
     margin: 25px;
     align-items: flex-start;
-    margin-bottom:0;
+    margin-bottom: 0;
 }
+
 .fs_logo {
     min-width: 180px;
 }
+
 .fs_logo_wrap {
     margin: 25px 0;
     display: flex;
     flex-direction: column;
 }
+
 .fs_logo_text {
     font-family: sans-serif !important;
     text-align: center;
@@ -108,12 +134,15 @@
     border-bottom: 4px solid red;
     padding-bottom: 2px;
 }
+
 .fs_sort_by_wrap {
     margin: 25px;
 }
+
 .fs_autocomplete_wrap {
     width: 100%;
 }
+
 #productList {
     display: flex;
     width: calc(100% - 49px);
@@ -124,24 +153,30 @@
     box-shadow: 0 0 6px #6b6b6b;
     border-radius: 4px;
 }
+
 #productModal {
     display: none;
 }
+
 .fs_product_ac {
     width: 15%;
     list-style-type: none;
     padding-right: 1%;
 }
+
 .fs_product_title_ac {
     overflow: hidden;
-   display: -webkit-box;
-   -webkit-line-clamp: 3; /* number of lines to show */
-           line-clamp: 3; 
-   -webkit-box-orient: vertical;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    /* number of lines to show */
+    line-clamp: 3;
+    -webkit-box-orient: vertical;
 }
+
 .fs_product_image_ac {
     width: 100%;
 }
+
 .fs_search_form {
     display: flex;
     align-items: center;
@@ -159,7 +194,7 @@
 
 .fs_search_form button[type="submit"] {
     padding: 8px 16px;
-    background-color: red;
+    background-color: darkgray;
     color: white;
     border: none;
     outline: none;
@@ -168,57 +203,166 @@
 }
 
 .fs_search_form button[type="submit"]:hover {
-    background-color: darkred;
+    background-color: gray;
 }
+
 .fs_collections_btn_wrapper {
     display: inline-flex;
     align-items: center;
-  }
+}
 
-  .fs_collections_btn {
+.fs_collections_btn {
     padding: 8px 16px;
-    background-color: red;
+    background-color: darkgray;
     color: white;
     border: none;
     outline: none;
     font-size: 16px;
     cursor: pointer;
     margin-left: 15px;
-  }
+}
 
-  .fs_collections_btn:hover {
-    background-color: darkred;
-  }
+.fs_collections_btn:hover {
+    background-color: gray;
+}
 
-  .fs_sort_by_wrap {
+.fs_sort_by_wrap {
     display: flex;
     align-items: center;
     float: right;
     margin-right: 0;
-  }
-  .fs_collections_btn_wrapper, .fs_sort_by_wrap {
-    margin-bottom: 0px;
-  }
+}
 
-  .fs_sort_by_label {
+.fs_collections_btn_wrapper,
+.fs_sort_by_wrap {
+    margin-bottom: 0px;
+}
+
+.fs_sort_by_label {
     color: black;
     margin-right: 10px;
     font-size: 16px;
-  }
+}
 
-  .fs_sort_by_select {
+.fs_sort_by_select {
     padding: 6px;
-    background-color: red;
+    background-color: darkgray;
     color: white;
     border: none;
     outline: none;
     font-size: 16px;
     cursor: pointer;
-  }
+}
 
-  .fs_sort_by_option {
+.fs_sort_by_option {
     background-color: white;
     color: black;
+}
+
+.fs_color_swatch {
+    width: 20px;
+    height: 20px;
+    margin: 2px;
+    border: 1px solid;
+}
+.fs_color_swatches_wrap {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+
+
+
+.range_container {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    margin: 35% auto;
+  }
+  
+  .sliders_control {
+    position: relative;
+    min-height: 50px;
+  }
+  
+  .form_control {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    font-size: 24px;
+    color: #635a5a;
+  }
+  
+  input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    pointer-events: all;
+    width: 24px;
+    height: 24px;
+    background-color: #fff;
+    border-radius: 50%;
+    box-shadow: 0 0 0 1px #C6C6C6;
+    cursor: pointer;
+  }
+  
+  input[type=range]::-moz-range-thumb {
+    -webkit-appearance: none;
+    pointer-events: all;
+    width: 24px;
+    height: 24px;
+    background-color: #fff;
+    border-radius: 50%;
+    box-shadow: 0 0 0 1px #C6C6C6;
+    cursor: pointer;  
+  }
+  
+  input[type=range]::-webkit-slider-thumb:hover {
+    background: #f7f7f7;
+  }
+  
+  input[type=range]::-webkit-slider-thumb:active {
+    box-shadow: inset 0 0 3px #387bbe, 0 0 9px #387bbe;
+    -webkit-box-shadow: inset 0 0 3px #387bbe, 0 0 9px #387bbe;
+  }
+  
+  input[type="number"] {
+    color: #8a8383;
+    width: 50px;
+    height: 30px;
+    font-size: 20px;
+    border: none;
+  }
+  
+  input[type=number]::-webkit-inner-spin-button, 
+  input[type=number]::-webkit-outer-spin-button {  
+     opacity: 1;
+  }
+  
+  input[type="range"] {
+    -webkit-appearance: none; 
+    appearance: none;
+    height: 2px;
+    width: 100%;
+    position: absolute;
+    background-color: #C6C6C6;
+    pointer-events: none;
+  }
+  
+  #fromSlider {
+    height: 0;
+    z-index: 1;
   }
 
-  
+  .fs_colorswatch {
+    width: 20px;
+    height: 20px;
+    border: 1px solid black;
+    margin-right: 5px;
+  }
+
+  .fs_colorswatches_container {
+    display: flex;
+  }
+
+  .fs_colorswatch_selected {
+    border: 1px solid red;
+  }
