@@ -29,6 +29,10 @@ function getAllCategories() {
                 url.searchParams.delete('min_price');
                 url.searchParams.delete('max_price');
                 url.searchParams.delete('checkboxState');
+                url.searchParams.delete('checkboxState2');
+                url.searchParams.delete('size');
+                url.searchParams.delete('search');
+                searchInput.value = '';
                 setUrlParam('collectionID', collectionID, true);
                 // smartCollectionsInit(collectionID);
             });

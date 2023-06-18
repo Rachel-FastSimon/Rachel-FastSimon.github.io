@@ -51,8 +51,8 @@ function getNarrowBy() {
     if(!narrowBy) {
         narrowBy = [];
     }
-    let minPriceValue = getMinPriceValue();
-    let maxPriceValue = getMaxPriceValue();
+    let minPriceValue = getMinPriceValue(false);
+    let maxPriceValue = getMaxPriceValue(false);
     if(minPriceValue && maxPriceValue) {
         let selectedFilters = [];
         selectedFilters.push('Price_from_to');
@@ -63,8 +63,10 @@ function getNarrowBy() {
     if(selectedColors && selectedColors.size) {
         selectedColors.forEach(color => {
           let selectedFilters = [];
-          selectedFilters.push('Colour');
-          selectedFilters.push('colour:' + color.toLowerCase());
+          // selectedFilters.push('Colour');
+          // selectedFilters.push('colour:' + color.toLowerCase());
+          selectedFilters.push('Colors');
+          selectedFilters.push(color);
           // selectedFilters.push(color);
           narrowBy.push(selectedFilters);
         });
@@ -72,16 +74,16 @@ function getNarrowBy() {
     return narrowBy;
 }
 
-function getMinPriceValue() {
+function getMinPriceValue(useCatalog = true) {
     let minPriceValue = url.searchParams.get('min_price');
-    if(!minPriceValue && minPrice) {
+    if(!minPriceValue && minPrice && useCatalog) {
         minPriceValue = minPrice;
     }
     return minPriceValue;
 }
-function getMaxPriceValue() {
+function getMaxPriceValue(useCatalog = true) {
     let maxPriceValue = url.searchParams.get('max_price');
-    if(!maxPriceValue && maxPrice) {
+    if(!maxPriceValue && maxPrice && useCatalog) {
         maxPriceValue = maxPrice;
     }
     return maxPriceValue;
