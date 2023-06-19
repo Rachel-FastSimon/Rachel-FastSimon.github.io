@@ -23,10 +23,28 @@
       // product.t is an image URL
       if (product.t) {
         productImage.src = product.t;
+        productImage.setAttribute('firstSrc', product.t);
+        console.log('product', product);
       } else {
         productImage.src = 'https://acp-magento.appspot.com/images/missing.gif';
       }
-
+      if(product && product.vra && product.vra.length > 1) {
+        product.vra[1][1].forEach(el => {
+          if(el[0] == 'imgs') {
+            let secondSrc = el[1][0];
+            productImage.setAttribute('secondSrc', secondSrc);
+            //image carusel
+            productImage.addEventListener("mouseenter", (event) => {
+              let src = productImage.getAttribute('secondSrc');
+              productImage.src = src;
+            })
+            productImage.addEventListener("mouseleave", (event) => {
+              let src = productImage.getAttribute('firstSrc');
+              productImage.src = src;
+            })
+          }
+        })
+      }
       productContainer.appendChild(productImage);
 
       if (product.l) {
@@ -44,7 +62,7 @@
       }
 
       //colorswatches
-      if(product.vra.length > 1) {
+      if(product && product.vra && product.vra.length > 1) {
         showColorswatches(product, productContainer);
 
       }
