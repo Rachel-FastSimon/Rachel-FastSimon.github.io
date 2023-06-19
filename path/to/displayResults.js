@@ -33,7 +33,7 @@
           if(el[0] == 'imgs') {
             let secondSrc = el[1][0];
             productImage.setAttribute('secondSrc', secondSrc);
-            //image carusel
+            //image carousel 
             productImage.addEventListener("mouseenter", (event) => {
               let src = productImage.getAttribute('secondSrc');
               productImage.src = src;

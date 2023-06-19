@@ -145,9 +145,9 @@ function displayAutocomplete(response) {
                     turboLink.href = turbolink.u;
                     turboLink.target = '_blank';
                     // popularSearchLink.setAttribute('id', popularSearch.id);
-                    turboLink.addEventListener('click', function (event) {
-                        console.log('turboLink btn clicked');
-                        event.preventDefault();
+                    // turboLink.addEventListener('click', function (event) {
+                    //     console.log('turboLink btn clicked');
+                    //     event.preventDefault();
                         // collectionID = collectionLink.getAttribute("id");
                         // searchResultsContainer.classList.add('fs_collections');
                         // if (searchResultsContainer.classList.contains('fs_search')) {
@@ -155,7 +155,7 @@ function displayAutocomplete(response) {
                         // }
                         // currentNarrow = [];
                         // smartCollectionsInit(collectionID);
-                    });
+                    // });
                     turboLinks.appendChild(turboLink);
                     counter++;
                 }
