@@ -248,7 +248,11 @@
       const labelElement = document.createElement("label");
       labelElement.classList.add('fs_label_element');
       labelElement.setAttribute("name", `${facet[0]}`);
-      labelElement.textContent = facet[2]; // Assuming the first element of the facet array represents the filter label
+      labelElement.textContent = facet[2]; 
+      if (facet[0] == "Price_max") {
+        labelElement.textContent = 'Price'; 
+      }
+      // Assuming the first element of the facet array represents the filter label
       filterContainer.appendChild(labelElement);
 
       //price slider
@@ -361,6 +365,9 @@
 
         // Create checkboxes for each filter option
         for (let j = 0; j < facet[1].length; j++) {
+          if (facet[0] == "Price_max") {
+            continue;
+          }
           const option = facet[1][j][0]; // Assuming the filter options are strings
           const count = facet[1][j][1];
 
