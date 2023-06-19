@@ -5,12 +5,12 @@ function showColorswatches(product, productContainer) {
     colorSwatchesContainer.classList.add('fs_colorswatches_container');
     variants.forEach(variant => {
         if (variant[1][0][0] == 'Color') {
-            let colorName = variant[1][0][1][0].replace(/\s/g, '');
+            let colorName = variant[1][0][1][0].replace(/\s/g, '-').toLowerCase();
             // console.log(colorName);
             // Create the color swatch element
             const swatchElement = document.createElement('div');
             swatchElement.classList.add('fs_colorswatch');
-            let swatchClass = `fs_colorswatch_${colorName}`;
+            let swatchClass = `fast-swatch-color-${colorName}`;
             swatchElement.classList.add(`${swatchClass}`);
             swatchElement.style.backgroundColor = colorName;
             // Add event listener to the color swatch
