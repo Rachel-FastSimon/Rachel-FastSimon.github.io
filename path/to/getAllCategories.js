@@ -25,14 +25,15 @@ function getAllCategories() {
                 // url.searchParams.forEach((value, key) => {
                 //     url.searchParams.delete(key);
                 // });
-                url.searchParams.delete('color');
-                url.searchParams.delete('min_price');
-                url.searchParams.delete('max_price');
-                url.searchParams.delete('checkboxState');
-                url.searchParams.delete('checkboxState2');
-                url.searchParams.delete('size');
-                url.searchParams.delete('search');
-                searchInput.value = '';
+                // url.searchParams.delete('color');
+                // url.searchParams.delete('min_price');
+                // url.searchParams.delete('max_price');
+                // url.searchParams.delete('checkboxState');
+                // url.searchParams.delete('checkboxState2');
+                // url.searchParams.delete('size');
+                // url.searchParams.delete('search');
+                // searchInput.value = '';
+                clearFilters();
                 setUrlParam('collectionID', collectionID, true);
                 // smartCollectionsInit(collectionID);
             });
@@ -42,3 +43,14 @@ function getAllCategories() {
         });
     }, true);
 };
+
+function clearFilters() {
+    url.searchParams.delete('color');
+    url.searchParams.delete('min_price');
+    url.searchParams.delete('max_price');
+    url.searchParams.delete('checkboxState');
+    url.searchParams.delete('checkboxState2');
+    url.searchParams.delete('size');
+    url.searchParams.delete('search');
+    searchInput.value = '';
+}
