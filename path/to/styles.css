@@ -14,6 +14,9 @@
     display: flex;
 }
 
+.fs_header_container {
+    width: 100%;
+}
 .fs_search_results_wrapper {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
@@ -122,6 +125,7 @@
     margin: 25px;
     align-items: flex-start;
     margin-bottom: 0;
+    width: 100%;
 }
 
 .fs_logo {
@@ -416,6 +420,7 @@ input[type="range"] {
     align-items: flex-start;
     box-shadow: 0 0 6px #6b6b6b;
     border: 1px solid #6b6b6b;
+    width: 95%;
 }
 
 .fs_autocomplete_links_title {
