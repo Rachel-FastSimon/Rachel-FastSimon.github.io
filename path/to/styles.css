@@ -117,7 +117,7 @@
 }
 
 .fs_filter_checkbox {
-    accent-color: red;
+    accent-color: #212529;
 }
 
 .fs_search_bar {
@@ -210,17 +210,19 @@
 }
 
 .fs_search_form button[type="submit"] {
-    padding: 8px 16px;
-    background-color: darkgray;
-    color: white;
+    padding: 7.5px 16px;
+    background-color: transparent;
+    color: #212529;
     border: none;
     outline: none;
     font-size: 16px;
     cursor: pointer;
+    border-bottom: 2px solid;
 }
 
 .fs_search_form button[type="submit"]:hover {
-    background-color: gray;
+    padding: 5px 16px;
+    font-size: 20px;
 }
 
 .fs_collections_btn_wrapper {
@@ -230,17 +232,16 @@
 
 .fs_collections_btn {
     padding: 8px 16px;
-    background-color: darkgray;
-    color: white;
     border: none;
     outline: none;
     font-size: 16px;
     cursor: pointer;
     white-space: nowrap;
+    background-color: transparent;
 }
 
 .fs_collections_btn:hover {
-    background-color: gray;
+    text-decoration: underline;
 }
 
 .fs_sort_by_wrap {
@@ -270,6 +271,9 @@
     outline: none;
     font-size: 16px;
     cursor: pointer;
+    background-color: transparent;
+    color: black;
+    border: 1px solid black;
 }
 
 .fs_sort_by_option {
@@ -282,7 +286,8 @@
     height: 30px;
     margin: 2px;
     margin-bottom: 20px;
-    border: 1px solid lightgray;
+    border: 1px solid #c7c7c7;
+    border-radius: 50px;
 }
 
 .fs_color_swatches_wrap {
@@ -340,8 +345,8 @@ input[type=range]::-webkit-slider-thumb:hover {
 }
 
 input[type=range]::-webkit-slider-thumb:active {
-    box-shadow: inset 0 0 3px #ed0d0d, 0 0 9px #ed0d0d;
-    -webkit-box-shadow: inset 0 0 3px #ed0d0d, 0 0 9px #ed0d0d;
+    box-shadow: inset 0 0 3px #212529, 0 0 9px #212529;
+    -webkit-box-shadow: inset 0 0 3px #212529, 0 0 9px #212529;
 }
 
 input[type="number"] {
@@ -374,7 +379,7 @@ input[type="range"] {
     height: 2px;
     width: 100%;
     position: absolute;
-    background-color: #ed0d0d;
+    background-color: #212529;
     pointer-events: none;
 }
 
@@ -390,8 +395,10 @@ input[type="range"] {
 .fs_colorswatch {
     width: 20px;
     height: 20px;
-    border: 1px solid lightgray;
+    border: 1px solid #c7c7c7 ;
     margin-right: 5px;
+    border-radius: 50px;
+    cursor: pointer;
 }
 
 .fs_colorswatches_container {
@@ -494,5 +501,5 @@ input[type="range"] {
     border-radius: 8px;
   border: 3px solid transparent;
    background-clip: content-box;
-    background-color: #ed0d0d;
+    background-color: #212529;
 } */

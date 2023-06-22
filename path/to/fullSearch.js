@@ -2,12 +2,12 @@
   function fullSearchInit() {
     let searchQuery = document.getElementById('searchInput').value;
     searchQuery = `"${searchQuery}"`;
-
-    console.log('currentNarrow33333', currentNarrow);
+    let narrowBy = getNarrowBy();
+    let sortBy = getSortBy();
 
     window.FastSimonSDK.fullTextSearch({
       term: searchQuery,
-      narrowBy: currentNarrow,
+      narrowBy: narrowBy,
       sortBy: sortBy,
       callback: (response) => {
         console.log(response);

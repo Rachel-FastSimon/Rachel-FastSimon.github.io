@@ -1,5 +1,5 @@
 //Get all categories
-function getAllCategories() {
+function renderCategoriesMenu() {
     window.FastSimonSDK.getAllCategories((response) => {
         console.log(response);
         // Assuming there's a container element in your HTML to hold the buttons

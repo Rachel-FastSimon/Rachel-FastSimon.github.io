@@ -73,6 +73,7 @@
       searchResultsWrapper.appendChild(productContainer);
       container.appendChild(searchResultsWrapper);
     });
+    // localStorage.setItem('searchResults', JSON.stringify(results));
     localStorage.setItem('searchResults', JSON.stringify(results));
     searchResultsContainer.classList.add('fs_products_loaded');
   }

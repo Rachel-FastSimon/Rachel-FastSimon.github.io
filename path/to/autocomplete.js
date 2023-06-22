@@ -1,10 +1,10 @@
 //Autocomplete
 const searchInput = document.getElementById('searchInput');
-searchInput.value = getSearch();
+searchInput.value = isSearchPage();
 
 searchInput.addEventListener('input', function (event) {
     const searchTerm = event.target.value;
-    setUrlParam('search', searchTerm);
+    // setUrlParam('search', searchTerm);
     // Use the following code for every keystroke shoppers perform in a searchbox.
     window.FastSimonSDK.instantSearch({
         query: searchTerm,
@@ -14,6 +14,10 @@ searchInput.addEventListener('input', function (event) {
         }
     });
     console.log(searchTerm);
+});
+document.getElementById('searchForm').addEventListener('submit', function (event) {
+    const searchTerm = searchInput.value;
+    setUrlParam('search', searchTerm);
 });
 let linksContainer = document.createElement('div');
 function displayAutocomplete(response) {
