@@ -1,11 +1,19 @@
+@font-face {
+    font-family: 'Gotham-Book';
+    /* src: url('../../fonts/1826-font.otf') format('otf'); */
+    src: url('/fonts/1826-font.otf') format('opentype');
+}
+
 * {
-    font-family: 'Lato', sans-serif !important;
+    /* font-family: 'Gotham-Book', sans-serif !important; */
+    font-family: 'Tangerine', serif;
+    color: #212529;
 }
 
 .fs_search_results_wrapper {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
-    gap: 10px;
+    gap: 20px;
 }
 
 .fs_product {
@@ -76,15 +84,13 @@
 .fs_filters_container {
     min-width: 211px;
     height: fit-content;
-    border: 1px solid gray;
+    border-right: 1px solid lightgray;
     padding: 5px;
     margin: 25px;
     display: none;
 }
 
 .fs_label_element {
-    color: li;
-    font-weight: bold;
     margin-bottom: 15px;
     font-size: 22px;
 }
@@ -100,6 +106,7 @@
 .fs_filter_checkbox_count {
     margin-left: 10px;
     float: right;
+    color: gray;
 }
 
 .fs_filter_checkbox {
@@ -221,7 +228,7 @@
     outline: none;
     font-size: 16px;
     cursor: pointer;
-    margin-left: 15px;
+    white-space: nowrap;
 }
 
 .fs_collections_btn:hover {
@@ -231,8 +238,9 @@
 .fs_sort_by_wrap {
     display: flex;
     align-items: center;
+    justify-content: flex-end;
     float: right;
-    margin-right: 0;
+    margin-right: 5px;
 }
 
 .fs_collections_btn_wrapper,
@@ -262,15 +270,16 @@
 }
 
 .fs_color_swatch {
-    width: 20px;
-    height: 20px;
+    width: 30px;
+    height: 30px;
     margin: 2px;
-    border: 1px solid;
+    margin-bottom: 20px;
+    border: 1px solid lightgray;
 }
 
 .fs_color_swatches_wrap {
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
 }
 
 
@@ -279,13 +288,13 @@
 .range_container {
     display: flex;
     flex-direction: column;
-    width: 80%;
+    width: 100%;
     margin: 5% auto;
 }
 
 .sliders_control {
     position: relative;
-    min-height: 50px;
+    min-height: 20px;
 }
 
 .form_control {
@@ -323,8 +332,8 @@ input[type=range]::-webkit-slider-thumb:hover {
 }
 
 input[type=range]::-webkit-slider-thumb:active {
-    box-shadow: inset 0 0 3px #387bbe, 0 0 9px #387bbe;
-    -webkit-box-shadow: inset 0 0 3px #387bbe, 0 0 9px #387bbe;
+    box-shadow: inset 0 0 3px #ed0d0d, 0 0 9px #ed0d0d;
+    -webkit-box-shadow: inset 0 0 3px #ed0d0d, 0 0 9px #ed0d0d;
 }
 
 input[type="number"] {
@@ -333,6 +342,17 @@ input[type="number"] {
     height: 30px;
     font-size: 20px;
     border: none;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type="number"] {
+    -moz-appearance: textfield;
+    /* Firefox */
 }
 
 input[type=number]::-webkit-inner-spin-button,
@@ -346,8 +366,12 @@ input[type="range"] {
     height: 2px;
     width: 100%;
     position: absolute;
-    background-color: #C6C6C6;
+    background-color: #ed0d0d;
     pointer-events: none;
+}
+
+#toSlider {
+    /* background: linear-gradient(to right, rgb(198, 198, 198) 0%, rgb(198, 198, 198) 0%, rgb(37, 218, 165) 0%, rgb(37, 218, 165) 90.4762%, rgb(198, 198, 198) 90.4762%, rgb(198, 198, 198) 100%) !important; */
 }
 
 #fromSlider {
@@ -358,7 +382,7 @@ input[type="range"] {
 .fs_colorswatch {
     width: 20px;
     height: 20px;
-    border: 1px solid black;
+    border: 1px solid lightgray;
     margin-right: 5px;
 }
 
@@ -367,7 +391,7 @@ input[type="range"] {
 }
 
 .fs_colorswatch_selected {
-    border: 1px solid red;
+    border: 1px solid rgb(83, 83, 83);
 }
 
 .fs_autocomplete_links {
@@ -416,3 +440,50 @@ input[type="range"] {
 .fs_colorswatches_container {
     margin-top: 10px;
 }
+
+.form_control_container__time {
+    display: none;
+}
+
+#toInput {
+    text-align: end;
+}
+
+.fs_sort_by_select option:hover  {
+    background-color: white;
+}
+
+.scrollbar {
+    display: flex;
+    flex-direction: column;
+}
+/* scrollbar */
+/* .container {
+    display: flex;
+    margin: 50px;
+    column-gap: 20px;
+}
+
+.scrollbar {
+    height: 1300px;
+    width: 95%;
+    overflow: auto;
+    padding: 0 10px;
+}
+
+#scrollbar1::-webkit-scrollbar {
+    width: 16px;
+}
+
+#scrollbar1::-webkit-scrollbar-track {
+    border-radius: 8px;
+    background-color: #e7e7e7;
+    border: 1px solid #cacaca;
+}
+
+#scrollbar1::-webkit-scrollbar-thumb {
+    border-radius: 8px;
+  border: 3px solid transparent;
+   background-clip: content-box;
+    background-color: #ed0d0d;
+} */

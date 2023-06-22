@@ -122,7 +122,7 @@
   function priceSliderHandle() {
     function controlFromInput(fromSlider, fromInput, toInput, controlSlider) {
       const [from, to] = getParsed(fromInput, toInput);
-      fillSlider(fromInput, toInput, '#C6C6C6', '#25daa5', controlSlider);
+      fillSlider(fromInput, toInput, '#C6C6C6', '#ed0d0d', controlSlider);
       if (from > to) {
         fromSlider.value = to;
         fromInput.value = to;
@@ -133,7 +133,7 @@
 
     function controlToInput(toSlider, fromInput, toInput, controlSlider) {
       const [from, to] = getParsed(fromInput, toInput);
-      fillSlider(fromInput, toInput, '#C6C6C6', '#25daa5', controlSlider);
+      fillSlider(fromInput, toInput, '#C6C6C6', '#ed0d0d', controlSlider);
       setToggleAccessible(toInput);
       if (from <= to) {
         toSlider.value = to;
@@ -145,7 +145,7 @@
 
     function controlFromSlider(fromSlider, toSlider, fromInput) {
       const [from, to] = getParsed(fromSlider, toSlider);
-      fillSlider(fromSlider, toSlider, '#C6C6C6', '#25daa5', toSlider);
+      fillSlider(fromSlider, toSlider, '#C6C6C6', '#ed0d0d', toSlider);
       if (from > to) {
         fromSlider.value = to;
         fromInput.value = to;
@@ -156,7 +156,7 @@
 
     function controlToSlider(fromSlider, toSlider, toInput) {
       const [from, to] = getParsed(fromSlider, toSlider);
-      fillSlider(fromSlider, toSlider, '#C6C6C6', '#25daa5', toSlider);
+      fillSlider(fromSlider, toSlider, '#C6C6C6', '#ed0d0d', toSlider);
       setToggleAccessible(toSlider);
       if (from <= to) {
         toSlider.value = to;
@@ -206,7 +206,7 @@
     const toSlider = document.querySelector('#toSlider');
     const fromInput = document.querySelector('#fromInput');
     const toInput = document.querySelector('#toInput');
-    fillSlider(fromSlider, toSlider, '#C6C6C6', '#25daa5', toSlider);
+    fillSlider(fromSlider, toSlider, '#C6C6C6', '#ed0d0d', toSlider);
     setToggleAccessible(toSlider);
 
     if(fromSlider) {
@@ -388,7 +388,11 @@
           const optionLabel = document.createElement("label");
           optionLabel.classList.add('fs_filter_checkbox_label');
           if (checkboxElement.getAttribute("key") == 'Categories') {
-            optionLabel.textContent = facet[1][j][2];
+            if(facet[1][j][2] == 'all-products') {
+              optionLabel.textContent = 'All products';
+            } else {
+              optionLabel.textContent = facet[1][j][2];
+            }
           } else {
             optionLabel.textContent = option;
           }

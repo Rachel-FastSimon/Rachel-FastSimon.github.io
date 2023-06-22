@@ -9,7 +9,11 @@ function getAllCategories() {
         response.forEach(item => {
             const collectionButton = document.createElement('button');
             collectionButton.classList.add('fs_collections_btn');
-            collectionButton.textContent = item.l;
+            if(item.l == 'all-products') {
+                collectionButton.textContent = 'All products';
+            } else {
+                collectionButton.textContent = item.l;
+            }
             collectionButton.setAttribute('id', item.id);
             collectionButton.addEventListener('click', function (event) {
                 console.log('collection btn clicked');

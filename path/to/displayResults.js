@@ -24,7 +24,6 @@
       if (product.t) {
         productImage.src = product.t;
         productImage.setAttribute('firstSrc', product.t);
-        console.log('product', product);
       } else {
         productImage.src = 'https://acp-magento.appspot.com/images/missing.gif';
       }
@@ -57,7 +56,10 @@
       if (product.p && product.c) {
         const productPrice = document.createElement('p');
         productPrice.classList.add('fs_product_price');
-        productPrice.textContent = `${product.p} ${product.c}`;
+        productPrice.textContent = `${product.p}`;
+        if(product.c == 'USD') {
+          productPrice.innerText += ' $';
+        }
         productContainer.appendChild(productPrice);
       }
 
