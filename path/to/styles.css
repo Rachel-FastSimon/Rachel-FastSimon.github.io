@@ -6,8 +6,12 @@
 
 * {
     /* font-family: 'Gotham-Book', sans-serif !important; */
-    font-family: 'Tangerine', serif;
+    font-family: 'Abel', serif;
     color: #212529;
+}
+
+.fs_header_wrapper {
+    display: flex;
 }
 
 .fs_search_results_wrapper {
