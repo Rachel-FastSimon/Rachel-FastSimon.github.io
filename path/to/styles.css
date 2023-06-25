@@ -12,6 +12,7 @@
 
 .fs_header_wrapper {
     display: flex;
+    justify-content: space-around;
 }
 
 .fs_header_container {
@@ -155,7 +156,7 @@
 }
 
 .fs_autocomplete_wrap {
-    width: 100%;
+    /* width: 100%; */
 }
 
 #productList {
@@ -198,7 +199,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 83%;
+    width: 100%;
 }
 
 .fs_search_form input[type="text"] {
@@ -234,7 +235,7 @@
     padding: 8px 16px;
     border: none;
     outline: none;
-    font-size: 16px;
+    font-size: 17px;
     cursor: pointer;
     white-space: nowrap;
     background-color: transparent;
@@ -273,7 +274,6 @@
     cursor: pointer;
     background-color: transparent;
     color: black;
-    border: 1px solid black;
 }
 
 .fs_sort_by_option {
