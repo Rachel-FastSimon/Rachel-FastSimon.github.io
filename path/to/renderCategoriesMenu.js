@@ -11,6 +11,8 @@ function renderCategoriesMenu() {
             collectionButton.classList.add('fs_collections_btn');
             if(item.l == 'all-products') {
                 collectionButton.textContent = 'All products';
+            } else if(item.l == 'vertical-layout') {
+                collectionButton.textContent = 'Vertical layout';
             } else {
                 collectionButton.textContent = item.l;
             }
@@ -56,5 +58,8 @@ function clearFilters() {
     url.searchParams.delete('checkboxState2');
     url.searchParams.delete('size');
     url.searchParams.delete('search');
+    url.searchParams.delete('page');
+    url.searchParams.delete('collectionID');
+    url.searchParams.delete('sortBy');
     searchInput.value = '';
 }

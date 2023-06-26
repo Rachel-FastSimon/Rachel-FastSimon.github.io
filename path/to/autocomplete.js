@@ -15,10 +15,10 @@ searchInput.addEventListener('input', function (event) {
     });
     console.log(searchTerm);
 });
-document.getElementById('searchForm').addEventListener('submit', function (event) {
-    const searchTerm = searchInput.value;
-    setUrlParam('search', searchTerm);
-});
+// document.getElementById('searchForm').addEventListener('submit', function (event) {
+//     const searchTerm = searchInput.value;
+//     setUrlParam('search', searchTerm);
+// });
 let linksContainer = document.createElement('div');
 function displayAutocomplete(response) {
     productList.innerHTML = '';
@@ -49,10 +49,24 @@ function displayAutocomplete(response) {
         }
 
         if (product.p && product.c) {
-            const productPrice = document.createElement('p');
+            const productPrice = document.createElement('span');
             productPrice.classList.add('fs_product_price_ac');
-            productPrice.textContent = `${product.p} ${product.c}`;
+            productPrice.textContent = `${product.p}`;
+            if (product.c == 'USD') {
+                productPrice.innerText = `$${productPrice.innerText}`;
+            }
             productContainer.appendChild(productPrice);
+        }
+
+        //compare price
+        if (product.p_c && product.p_c > 0 && product.c) {
+            const productComparePrice = document.createElement('span');
+            productComparePrice.classList.add('fs_product_compare_price_ac');
+            productComparePrice.textContent = `${product.p_c}`;
+            if (product.c == 'USD') {
+                productComparePrice.innerText = `$${productComparePrice.innerText}`;
+            }
+            productContainer.appendChild(productComparePrice);
         }
 
 
@@ -90,7 +104,8 @@ function displayAutocomplete(response) {
                             searchResultsContainer.classList.remove('fs_search');
                         }
                         clearFilters();
-                        smartCollectionsInit(collectionID);
+                        setUrlParam('collectionID', collectionID);
+                        smartCollectionsInit();
                     });
                     collectionLinks.appendChild(collectionLink);
                     counter++;
@@ -101,35 +116,29 @@ function displayAutocomplete(response) {
 
         //popular searches links
         if (response.popularSearches.length > 0) {
-            let popularSearchesLinks = document.createElement('div');
-            popularSearchesLinks.classList.add('fs_autocomplete_links', 'fs_popular_links');
-            let popularSearchesLinksTitle = document.createElement('div');
-            popularSearchesLinksTitle.classList.add('fs_autocomplete_links_title', 'fs_popular_links_title');
-            popularSearchesLinksTitle.innerText = 'popular searches:';
-            popularSearchesLinks.appendChild(popularSearchesLinksTitle);
-            let counter = 0;
-            response.popularSearches.forEach(popularSearch => {
-                if (counter < 3) {
-                    let popularSearchLink = document.createElement('div');
-                    popularSearchLink.classList.add('fs_autocomplete_link', 'fs_popularSearch_link');
-                    popularSearchLink.innerText = popularSearch.l;
-                    // popularSearchLink.setAttribute('id', popularSearch.id);
-                    popularSearchLink.addEventListener('click', function (event) {
-                        console.log('popularSearchLink btn clicked');
-                        event.preventDefault();
-                        // collectionID = collectionLink.getAttribute("id");
-                        // searchResultsContainer.classList.add('fs_collections');
-                        // if (searchResultsContainer.classList.contains('fs_search')) {
-                        //     searchResultsContainer.classList.remove('fs_search');
-                        // }
-                        // currentNarrow = [];
-                        // smartCollectionsInit(collectionID);
-                    });
-                    popularSearchesLinks.appendChild(popularSearchLink);
-                    counter++;
-                }
-            });
-            linksContainer.appendChild(popularSearchesLinks);
+            // let popularSearchesLinks = document.createElement('div');
+            // popularSearchesLinks.classList.add('fs_autocomplete_links', 'fs_popular_links');
+            // let popularSearchesLinksTitle = document.createElement('div');
+            // popularSearchesLinksTitle.classList.add('fs_autocomplete_links_title', 'fs_popular_links_title');
+            // popularSearchesLinksTitle.innerText = 'popular searches:';
+            // popularSearchesLinks.appendChild(popularSearchesLinksTitle);
+            // let counter = 0;
+            // response.popularSearches.forEach(popularSearch => {
+            //     if (counter < 3) {
+            //         let popularSearchLink = document.createElement('div');
+            //         popularSearchLink.classList.add('fs_autocomplete_link', 'fs_popularSearch_link');
+            //         popularSearchLink.innerText = popularSearch.l;
+            //         // popularSearchLink.setAttribute('id', popularSearch.id);
+            //         popularSearchLink.addEventListener('click', function (event) {
+            //             console.log('popularSearchLink btn clicked');
+            //             event.preventDefault();
+                        
+            //         });
+            //         popularSearchesLinks.appendChild(popularSearchLink);
+            //         counter++;
+            //     }
+            // });
+            // linksContainer.appendChild(popularSearchesLinks);
         }
 
         //turbolinks
@@ -152,13 +161,13 @@ function displayAutocomplete(response) {
                     // turboLink.addEventListener('click', function (event) {
                     //     console.log('turboLink btn clicked');
                     //     event.preventDefault();
-                        // collectionID = collectionLink.getAttribute("id");
-                        // searchResultsContainer.classList.add('fs_collections');
-                        // if (searchResultsContainer.classList.contains('fs_search')) {
-                        //     searchResultsContainer.classList.remove('fs_search');
-                        // }
-                        // currentNarrow = [];
-                        // smartCollectionsInit(collectionID);
+                    // collectionID = collectionLink.getAttribute("id");
+                    // searchResultsContainer.classList.add('fs_collections');
+                    // if (searchResultsContainer.classList.contains('fs_search')) {
+                    //     searchResultsContainer.classList.remove('fs_search');
+                    // }
+                    // currentNarrow = [];
+                    // smartCollectionsInit(collectionID);
                     // });
                     turboLinks.appendChild(turboLink);
                     counter++;

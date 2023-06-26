@@ -1,8 +1,11 @@
   // SDK Fast Simon collections usage
-  function smartCollectionsInit(collectionID) {
+  function smartCollectionsInit() {
 
     // console.log('checkboxState44433', currentNarrow);
     let narrowBy = getNarrowBy();
+    let collectionID = getCollectionId();
+    
+    let sortBy = getSortBy();
     // console.log('checkboxState44455', currentNarrow2);
 
     window.FastSimonSDK.smartCollections({
@@ -11,6 +14,8 @@
     //   narrowBy: currentNarrow,
       narrowBy: narrowBy,
       sortBy: sortBy,
+      page: 1,
+      productsPerPage: 20,
       callback: (response) => {
         console.log(response);
         if (searchResultsContainer.classList.contains('fs_products_loaded')) {
@@ -18,7 +23,7 @@
         }
         collectionTitle = `Collection "${response.payload.name}"`;
         localStorage.setItem('collectionTitle', collectionTitle);
-        collectionResults = response.payload.products;
+        collectionResults = response.payload;
         collectionFilters = response.payload.facets;
         console.log(collectionFilters);
         // there are 2 actions: we use here only one that contains facets
@@ -87,4 +92,8 @@ function getMaxPriceValue(useCatalog = true) {
         maxPriceValue = maxPrice;
     }
     return maxPriceValue;
+}
+
+function getCollectionId() {
+  return url.searchParams.get('collectionID')  || '292003643599';
 }

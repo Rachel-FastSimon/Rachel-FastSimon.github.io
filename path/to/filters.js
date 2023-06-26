@@ -97,7 +97,7 @@ function createPriceSlider() {
       url.searchParams.set('min_price', minPriceValue);
       url.searchParams.set('max_price', maxPriceValue);
       window.history.replaceState(null, null, url.toString());
-      refreshResults(300);
+      // refreshResults(300);
     }, 100);
 
   }
@@ -353,7 +353,7 @@ function displayFilters(facets) {
           // Update the URL in the browser's address bar
           window.history.replaceState(null, null, url.toString());
 
-          refreshResults(200);
+          // refreshResults(200);
           // }
         });
 
@@ -390,6 +390,8 @@ function displayFilters(facets) {
         if (checkboxElement.getAttribute("key") == 'Categories') {
           if (facet[1][j][2] == 'all-products') {
             optionLabel.textContent = 'All products';
+          } else if (facet[1][j][2] == 'vertical-layout') {
+            optionLabel.textContent = 'Vertical layout';
           } else {
             optionLabel.textContent = facet[1][j][2];
           }
@@ -421,7 +423,7 @@ function displayFilters(facets) {
       currentNarrow.push(selectedFilters);
       // localStorage.setItem('selectedFilters', JSON.stringify(currentNarrow));
       console.log('selectedFilters', currentNarrow);
-      saveCheckboxState();
+      // saveCheckboxState();
     } else {
       checkboxElement.classList.remove('fs_checkbox_selected');
       let unselectedFilters = [];
@@ -438,9 +440,10 @@ function displayFilters(facets) {
       }
       // localStorage.setItem('savedFacets', JSON.stringify(facets));
       console.log('selectedFilters', currentNarrow);
-      saveCheckboxState();
+      // saveCheckboxState();
     }
-    refreshResults();
+    saveCheckboxState();
+    // refreshResults();
     // Filter items based on selectedValue
     // Perform the necessary actions when the checkbox is checked
   }
@@ -455,25 +458,6 @@ function refreshResults(delay = 0) {
     initPage();
   }, delay);
 }
-// function initPage() {
-//   // if (searchResultsContainer.classList.contains('fs_search')) {
-//   if (getSearch()) {
-//     fullSearchInit();
-//   } else {
-//     smartCollectionsInit(collectionID);
-//   }
-// }
-
-// function setUrlParam(paramName, paramValue, refresh = false, delay = 0) {
-//   url.searchParams.set(paramName, paramValue);
-//   window.history.replaceState(null, null, url.toString());
-//   if (refresh) {
-//     refreshResults(delay);
-//   }
-// }
-// function getUrlParam(param) {
-//   return url.searchParams.get(param);
-// }
 
 function getSelectedColors() {
   let existingColorsStr = url.searchParams.get('color');
@@ -510,11 +494,6 @@ sortBySelect.addEventListener('change', function () {
   }
 });
 function getSortBy() {
-  // return url.searchParams.get('sortBy') || 'relevancy';
   return getUrlParam('sortBy') || 'relevancy';
 }
-
-// function getSearch() {
-//   return getUrlParam('search');
-// }
 
