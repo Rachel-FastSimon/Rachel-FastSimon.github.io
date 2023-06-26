@@ -1,12 +1,10 @@
 function showColorswatches(product, productContainer) {
-    // console.log(product.vra);
     let variants = product.vra;
     let colorSwatchesContainer = document.createElement('div');
     colorSwatchesContainer.classList.add('fs_colorswatches_container');
     variants.forEach(variant => {
         if (variant[1][0][0] == 'Color') {
             let colorName = variant[1][0][1][0].replace(/\s/g, '-').toLowerCase();
-            // console.log(colorName);
             // Create the color swatch element
             const swatchElement = document.createElement('div');
             swatchElement.classList.add('fs_colorswatch');

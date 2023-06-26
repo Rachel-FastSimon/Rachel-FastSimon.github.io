@@ -24,9 +24,6 @@ function saveCheckboxState() {
       }
     }
   });
-  // console.log('checkboxState2', checkboxState2);
-
-  // localStorage.setItem('checkboxState', JSON.stringify(checkboxState));
 
   url.searchParams.set('checkboxState', JSON.stringify(checkboxState));
   url.searchParams.set('checkboxState2', JSON.stringify(checkboxState2));
@@ -37,7 +34,6 @@ function saveCheckboxState() {
 
 // Function to load the state of filters checkboxes
 function loadCheckboxState() {
-  // const checkboxState = JSON.parse(localStorage.getItem('checkboxState'));
   const checkboxState = JSON.parse(url.searchParams.get('checkboxState'));
 
   if (checkboxState) {
@@ -89,15 +85,12 @@ function createPriceSlider() {
 
   // Function to update the URL query parameters
   function updatePriceRangeParams() {
-    //   const minPriceValue = fromSlider.value;
-    //   const maxPriceValue = toSlider.value;
     setTimeout(() => {
       const minPriceValue = fromInput.value;
       const maxPriceValue = toInput.value;
       url.searchParams.set('min_price', minPriceValue);
       url.searchParams.set('max_price', maxPriceValue);
       window.history.replaceState(null, null, url.toString());
-      // refreshResults(300);
     }, 100);
 
   }
@@ -301,25 +294,6 @@ function displayFilters(facets) {
           // Perform actions when color swatch is clicked
           console.log(`Selected color: ${colorName}`);
           const selectedColor = `${colorName}`;
-          // if(swatchElement.classList.contains('fs_colorswatch_selected')) {
-          //   swatchElement.classList.remove('fs_colorswatch_selected');
-          // } else {
-          //   swatchElement.classList.add('fs_colorswatch_selected');
-
-          //   // Get the existing color query parameter values
-          //   const existingColors = url.searchParams.getAll('color');
-
-          //   // Append the new color to the list
-          //   const updatedColors = [...existingColors, selectedColor];
-          //   console.log('updatedColors', updatedColors);
-
-          //   // Update the URL query parameters with the updated colors list
-          //   url.searchParams.set('color', updatedColors);
-
-          //   // Update the URL in the browser's address bar
-          //   window.history.replaceState(null, null, url.toString());
-          // }
-
 
           // Get the existing color query parameter values
           let existingColors = getSelectedColors();
@@ -327,34 +301,21 @@ function displayFilters(facets) {
 
           if (swatchElement.classList.contains('fs_colorswatch_selected')) {
             swatchElement.classList.remove('fs_colorswatch_selected');
-            // let index = existingColors.indexOf(selectedColor);
-            // if (index !== -1) {
-            //     existingColors.splice(index, 1);
-            // }
             existingColors.delete(selectedColor);
           } else {
             swatchElement.classList.add('fs_colorswatch_selected');
             existingColors.add(selectedColor);
           }
 
-
-
-          //   // Append the new color to the list
-          // //   const updatedColors = [...existingColors, selectedColor];
-
-          //   // Update the URL query parameters with the updated colors list
+          // Update the URL query parameters with the updated colors list
           if (existingColors.size) {
             url.searchParams.set('color', Array.from(existingColors));
           } else {
             url.searchParams.delete('color');
           }
-          //   url.searchParams.set('color', 'asdf');
 
           // Update the URL in the browser's address bar
           window.history.replaceState(null, null, url.toString());
-
-          // refreshResults(200);
-          // }
         });
 
         // Add the color swatch to the container
@@ -421,16 +382,11 @@ function displayFilters(facets) {
       selectedFilters.push(key);
       selectedFilters.push(value);
       currentNarrow.push(selectedFilters);
-      // localStorage.setItem('selectedFilters', JSON.stringify(currentNarrow));
-      console.log('selectedFilters', currentNarrow);
-      // saveCheckboxState();
     } else {
       checkboxElement.classList.remove('fs_checkbox_selected');
       let unselectedFilters = [];
       unselectedFilters.push(key);
       unselectedFilters.push(value);
-      const jsonunselectedFilters = JSON.stringify(unselectedFilters);
-      // currentNarrow.push(unselectedFilters);
       for (let i = 0; i < currentNarrow.length; i++) {
         console.log('compare', currentNarrow[i], unselectedFilters);
         const jsonunselectedFilters = JSON.stringify(unselectedFilters);
@@ -438,17 +394,10 @@ function displayFilters(facets) {
           currentNarrow.splice(i, 1);
         }
       }
-      // localStorage.setItem('savedFacets', JSON.stringify(facets));
-      console.log('selectedFilters', currentNarrow);
-      // saveCheckboxState();
     }
     saveCheckboxState();
-    // refreshResults();
-    // Filter items based on selectedValue
-    // Perform the necessary actions when the checkbox is checked
   }
   loadCheckboxState();
-  localStorage.setItem('savedFacets', JSON.stringify(facets));
 }
 
 let refreshResultTimeout = 0;

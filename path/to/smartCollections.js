@@ -1,32 +1,28 @@
   // SDK Fast Simon collections usage
   function smartCollectionsInit() {
 
-    // console.log('checkboxState44433', currentNarrow);
     let narrowBy = getNarrowBy();
     let collectionID = getCollectionId();
+    let page = getPage();
     
     let sortBy = getSortBy();
-    // console.log('checkboxState44455', currentNarrow2);
 
     window.FastSimonSDK.smartCollections({
       // showing All-products category
       categoryID: collectionID,
-    //   narrowBy: currentNarrow,
       narrowBy: narrowBy,
       sortBy: sortBy,
-      page: 1,
-      productsPerPage: 20,
+      page: page,
+      productsPerPage: 16,
       callback: (response) => {
         console.log(response);
         if (searchResultsContainer.classList.contains('fs_products_loaded')) {
           searchResultsContainer.classList.remove('fs_products_loaded')
         }
         collectionTitle = `Collection "${response.payload.name}"`;
-        localStorage.setItem('collectionTitle', collectionTitle);
         collectionResults = response.payload;
         collectionFilters = response.payload.facets;
         console.log(collectionFilters);
-        // there are 2 actions: we use here only one that contains facets
         if (response.action == fastSimonResponseAction) {
           console.log(fastSimonResponseAction);
           displayFilters(collectionFilters);
@@ -68,11 +64,8 @@ function getNarrowBy() {
     if(selectedColors && selectedColors.size) {
         selectedColors.forEach(color => {
           let selectedFilters = [];
-          // selectedFilters.push('Colour');
-          // selectedFilters.push('colour:' + color.toLowerCase());
           selectedFilters.push('Colors');
           selectedFilters.push(color);
-          // selectedFilters.push(color);
           narrowBy.push(selectedFilters);
         });
     }
@@ -96,4 +89,8 @@ function getMaxPriceValue(useCatalog = true) {
 
 function getCollectionId() {
   return url.searchParams.get('collectionID')  || '292003643599';
+}
+
+function getPage() {
+  return url.searchParams.get('page')  || '1';
 }

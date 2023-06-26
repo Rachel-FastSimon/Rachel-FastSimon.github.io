@@ -91,16 +91,17 @@ function displaySearchResults(results, container, searchQuery) {
   //pagination
   const paginationBtnsWrap = document.createElement('div');
   paginationBtnsWrap.classList.add('fs_pagination_btns_wrapper');
+  let pageNumber = results.page;
   //previous btn
   if (results.pageCount && results.page && results.pageCount > 1 && results.page > 1) {
     console.log('pagination');
     const previousButton = document.createElement('button');
     previousButton.classList.add('fs_load_more_btn');
     previousButton.textContent = '< Previous page';
-    let pageNumber = results.page;
     previousButton.addEventListener('click', function() {
       pageNumber--;
       setUrlParam('page', pageNumber);
+      window. scrollTo(0, 0);
     });
     paginationBtnsWrap.appendChild(previousButton);
   }
@@ -110,16 +111,13 @@ function displaySearchResults(results, container, searchQuery) {
     const nextButton = document.createElement('button');
     nextButton.classList.add('fs_load_more_btn');
     nextButton.textContent = 'Next page >';
-    let pageNumber = results.page;
     nextButton.addEventListener('click', function() {
       pageNumber++;
       setUrlParam('page', pageNumber);
+      window. scrollTo(0, 0);
     });
     paginationBtnsWrap.appendChild(nextButton);
   }
   container.appendChild(paginationBtnsWrap);
-
-  // localStorage.setItem('searchResults', JSON.stringify(results));
-  // localStorage.setItem('searchResults', JSON.stringify(products));
   searchResultsContainer.classList.add('fs_products_loaded');
 }

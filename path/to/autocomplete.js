@@ -4,7 +4,6 @@ searchInput.value = isSearchPage();
 
 searchInput.addEventListener('input', function (event) {
     const searchTerm = event.target.value;
-    // setUrlParam('search', searchTerm);
     // Use the following code for every keystroke shoppers perform in a searchbox.
     window.FastSimonSDK.instantSearch({
         query: searchTerm,
@@ -15,10 +14,6 @@ searchInput.addEventListener('input', function (event) {
     });
     console.log(searchTerm);
 });
-// document.getElementById('searchForm').addEventListener('submit', function (event) {
-//     const searchTerm = searchInput.value;
-//     setUrlParam('search', searchTerm);
-// });
 let linksContainer = document.createElement('div');
 function displayAutocomplete(response) {
     productList.innerHTML = '';
@@ -41,6 +36,7 @@ function displayAutocomplete(response) {
 
         productContainer.appendChild(productImage);
 
+        //title
         if (product.l) {
             const productName = document.createElement('h3');
             productName.classList.add('fs_product_title_ac');
@@ -48,6 +44,7 @@ function displayAutocomplete(response) {
             productContainer.appendChild(productName);
         }
 
+        //price
         if (product.p && product.c) {
             const productPrice = document.createElement('span');
             productPrice.classList.add('fs_product_price_ac');
@@ -105,7 +102,6 @@ function displayAutocomplete(response) {
                         }
                         clearFilters();
                         setUrlParam('collectionID', collectionID);
-                        smartCollectionsInit();
                     });
                     collectionLinks.appendChild(collectionLink);
                     counter++;
@@ -157,18 +153,6 @@ function displayAutocomplete(response) {
                     turboLink.innerText = turbolink.l;
                     turboLink.href = turbolink.u;
                     turboLink.target = '_blank';
-                    // popularSearchLink.setAttribute('id', popularSearch.id);
-                    // turboLink.addEventListener('click', function (event) {
-                    //     console.log('turboLink btn clicked');
-                    //     event.preventDefault();
-                    // collectionID = collectionLink.getAttribute("id");
-                    // searchResultsContainer.classList.add('fs_collections');
-                    // if (searchResultsContainer.classList.contains('fs_search')) {
-                    //     searchResultsContainer.classList.remove('fs_search');
-                    // }
-                    // currentNarrow = [];
-                    // smartCollectionsInit(collectionID);
-                    // });
                     turboLinks.appendChild(turboLink);
                     counter++;
                 }

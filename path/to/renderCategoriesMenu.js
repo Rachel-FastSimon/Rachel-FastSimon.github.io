@@ -21,27 +21,13 @@ function renderCategoriesMenu() {
                 console.log('collection btn clicked');
                 event.preventDefault();
                 collectionID = collectionButton.getAttribute("id");
-                localStorage.setItem('collectionID', collectionID);
-                localStorage.removeItem('checkboxState');
                 searchResultsContainer.classList.add('fs_collections');
                 if (searchResultsContainer.classList.contains('fs_search')) {
                     searchResultsContainer.classList.remove('fs_search');
                 }
                 currentNarrow = [];
-                // url.searchParams.forEach((value, key) => {
-                //     url.searchParams.delete(key);
-                // });
-                // url.searchParams.delete('color');
-                // url.searchParams.delete('min_price');
-                // url.searchParams.delete('max_price');
-                // url.searchParams.delete('checkboxState');
-                // url.searchParams.delete('checkboxState2');
-                // url.searchParams.delete('size');
-                // url.searchParams.delete('search');
-                // searchInput.value = '';
                 clearFilters();
                 setUrlParam('collectionID', collectionID, true);
-                // smartCollectionsInit(collectionID);
             });
 
             // Add the button to the container
