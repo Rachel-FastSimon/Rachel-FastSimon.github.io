@@ -1,14 +1,16 @@
 // Function to save the state of filters checkboxes
 function saveCheckboxState() {
   const checkboxes = document.querySelectorAll('.fs_filter_checkbox');
-  const checkboxState = [];
+  const checkboxState = {};
+  const checkboxState2 = [];
 
   checkboxes.forEach((checkbox) => {
     if (checkbox.checked) {
+      checkboxState[checkbox.value] = checkbox.checked;
       let key = checkbox.getAttribute("key");
       let value = checkbox.getAttribute("value");
-      if (!checkboxState[key]) {
-        checkboxState[key] = [];
+      if (!checkboxState2[key]) {
+        checkboxState2[key] = [];
       }
 
       if (checkbox.checked) {
@@ -17,15 +19,30 @@ function saveCheckboxState() {
         let selectedFilters = [];
         selectedFilters.push(key);
         selectedFilters.push(value);
-        checkboxState.push(selectedFilters);
+        checkboxState2.push(selectedFilters);
+        // checkboxState2[key].push(checkbox.value);
       }
     }
   });
 
   url.searchParams.set('checkboxState', JSON.stringify(checkboxState));
+  url.searchParams.set('checkboxState2', JSON.stringify(checkboxState2));
   // Update the URL in the browser's address bar
   window.history.replaceState(null, null, url.toString());
 
+}
+
+// Function to load the state of filters checkboxes
+function loadCheckboxState() {
+  const checkboxState = JSON.parse(url.searchParams.get('checkboxState'));
+
+  if (checkboxState) {
+    const checkboxes = document.querySelectorAll('.fs_filter_checkbox');
+
+    checkboxes.forEach((checkbox) => {
+      checkbox.checked = checkboxState[checkbox.value] || false;
+    });
+  }
 }
 
 //creating price slider
@@ -33,7 +50,7 @@ function createPriceSlider() {
   // Create the parent container element
   priceSlider = document.createElement('div');
 
-  const elementString = '<div class="range_container"><div class="sliders_control"><input id="fromSlider" type="range" value="10" min="0" max="100"/><input id="toSlider" type="range" value="40" min="0" max="100"/></div ><div class="form_control"><div class="form_control_container"><div class="form_control_container__time">$</div><input class="form_control_container__time__input" type="number" id="fromInput" value="10" min="0" max="100" /></div><div class="form_control_container"><div class="form_control_container__time">$</div><input class="form_control_container__time__input" type="number" id="toInput" value="40" min="0" max="100" /></div></div></div >';
+  const elementString = '<div class="range_container"><div class="sliders_control"><input id="fromSlider" type="range" value="10" min="0" max="100"/><input id="toSlider" type="range" value="40" min="0" max="100"/></div ><div class="form_control"><div class="form_control_container"><div class="form_control_container__time">Min</div><input class="form_control_container__time__input" type="number" id="fromInput" value="10" min="0" max="100" /></div><div class="form_control_container"><div class="form_control_container__time">Max</div><input class="form_control_container__time__input" type="number" id="toInput" value="40" min="0" max="100" /></div></div></div >';
 
   // Create a temporary container element
   const container = document.createElement('div');
@@ -357,13 +374,38 @@ function displayFilters(facets) {
 
   function handleCheckboxSelection(checkboxElement) {
     const isChecked = checkboxElement.checked;
+    let key = checkboxElement.getAttribute("key");
+    let value = checkboxElement.getAttribute("value");
     if (isChecked) {
       checkboxElement.classList.add('fs_checkbox_selected');
+      let selectedFilters = [];
+      selectedFilters.push(key);
+      selectedFilters.push(value);
+      currentNarrow.push(selectedFilters);
     } else {
       checkboxElement.classList.remove('fs_checkbox_selected');
+      let unselectedFilters = [];
+      unselectedFilters.push(key);
+      unselectedFilters.push(value);
+      for (let i = 0; i < currentNarrow.length; i++) {
+        console.log('compare', currentNarrow[i], unselectedFilters);
+        const jsonunselectedFilters = JSON.stringify(unselectedFilters);
+        if (JSON.stringify(currentNarrow[i]) == jsonunselectedFilters) {
+          currentNarrow.splice(i, 1);
+        }
+      }
     }
     saveCheckboxState();
   }
+  loadCheckboxState();
+}
+
+let refreshResultTimeout = 0;
+function refreshResults(delay = 0) {
+  clearTimeout(refreshResultTimeout);
+  refreshResultTimeout = setTimeout(() => {
+    initPage();
+  }, delay);
 }
 
 function getSelectedColors() {

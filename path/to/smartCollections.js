@@ -48,7 +48,7 @@
 
 
 function getNarrowBy() {
-    let narrowBy = JSON.parse(url.searchParams.get('checkboxState'));
+    let narrowBy = JSON.parse(url.searchParams.get('checkboxState2'));
     if(!narrowBy) {
         narrowBy = [];
     }

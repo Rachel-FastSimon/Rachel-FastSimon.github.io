@@ -25,6 +25,7 @@ function renderCategoriesMenu() {
                 if (searchResultsContainer.classList.contains('fs_search')) {
                     searchResultsContainer.classList.remove('fs_search');
                 }
+                currentNarrow = [];
                 clearFilters();
                 setUrlParam('collectionID', collectionID, true);
             });
@@ -40,6 +41,7 @@ function clearFilters() {
     url.searchParams.delete('min_price');
     url.searchParams.delete('max_price');
     url.searchParams.delete('checkboxState');
+    url.searchParams.delete('checkboxState2');
     url.searchParams.delete('size');
     url.searchParams.delete('search');
     url.searchParams.delete('page');
