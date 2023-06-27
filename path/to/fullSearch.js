@@ -37,7 +37,7 @@
       eventName: window.FastSimonEventName.SearchPerformed,
       data: {
         query: searchQuery, // (Required)
-        narrowBy: currentNarrow,
+        narrowBy: narrowBy,
         sortBy: sortBy
       }
     });
@@ -51,6 +51,5 @@
     const searchTerm = searchInput.value;
     clearFilters();
     setUrlParam('search', searchTerm);
-    currentNarrow = [];
 
   });
