@@ -574,3 +574,7 @@ input[type="range"] {
         grid-template-columns: 1fr 1fr; 
     }
 }
+
+.fs_color_swatch {
+    cursor: pointer;
+}

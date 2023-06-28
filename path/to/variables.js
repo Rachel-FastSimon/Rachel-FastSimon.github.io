@@ -8,6 +8,7 @@ let minPrice;
 let maxPrice;
 let priceSlider;
 let turboLinkUrl = false;
+let filtersUrlParam = 'filters';
 
 
 

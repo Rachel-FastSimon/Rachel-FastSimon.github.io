@@ -41,7 +41,7 @@ function clearFilters() {
     url.searchParams.delete('min_price');
     url.searchParams.delete('max_price');
     url.searchParams.delete('checkboxState');
-    url.searchParams.delete('checkboxState2');
+    url.searchParams.delete(filtersUrlParam);
     url.searchParams.delete('size');
     url.searchParams.delete('search');
     url.searchParams.delete('page');

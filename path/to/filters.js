@@ -2,49 +2,112 @@
 function saveCheckboxState() {
   const checkboxes = document.querySelectorAll('.fs_filter_checkbox');
   const checkboxState = {};
-  const checkboxState2 = [];
+  let checkboxState2 = [];
 
   checkboxes.forEach((checkbox) => {
     if (checkbox.checked) {
-      checkboxState[checkbox.value] = checkbox.checked;
-      let key = checkbox.getAttribute("key");
-      let value = checkbox.getAttribute("value");
-      if (!checkboxState2[key]) {
-        checkboxState2[key] = [];
-      }
+      // checkboxState[checkbox.value] = checkbox.checked;
+      // let key = checkbox.getAttribute("key");
+      // let value = checkbox.getAttribute("value");
+      // if (!checkboxState2[key]) {
+      //   checkboxState2[key] = [];
+      // }
+      // checkboxState2[key].push(value);
 
-      if (checkbox.checked) {
+      // if (checkbox.checked) {
         let key = checkbox.getAttribute("key");
         let value = checkbox.getAttribute("value");
-        // setUrlParam(key, value);
+      //   // setUrlParam(key, value);
         let selectedFilters = [];
         selectedFilters.push(key);
         selectedFilters.push(value);
         checkboxState2.push(selectedFilters);
-        // checkboxState2[key].push(checkbox.value);
-      }
+      //   // checkboxState2[key].push(checkbox.value);
+      // }
     }
   });
+  // console.log('checkboxState2333', populateFromArray(checkboxState2));
 
-  url.searchParams.set('checkboxState', JSON.stringify(checkboxState));
+  // url.searchParams.set('checkboxState', JSON.stringify(checkboxState));
+  setUrlParam(filtersUrlParam, JSON.stringify(checkboxState2));
   // url.searchParams.set('checkboxState2', JSON.stringify(checkboxState2));
-  console.log('checkboxState2', checkboxState2);
-  console.log('checkboxState2', JSON.stringify(checkboxState2));
+  // console.log('checkboxState2', JSON.stringify(checkboxState2));
   // Update the URL in the browser's address bar
-  window.history.replaceState(null, null, url.toString());
+  // window.history.replaceState(null, null, url.toString());
 
 }
 
+// function dumpNarrow(narrow) {
+//   if (Object.keys(narrow ? narrow : {}).length === 0) {
+//     return ""
+//   }
+
+//   let narrowString = "",
+//     i = 0
+//   const items = Object.entries(narrow)
+//   for (const [name, values] of items) {
+//     if (values) {
+//       narrowString += Array.from(values).reduce(
+//         (p, value, i) =>
+//           p + `${name},${value}${i < values.size - 1 ? "," : ""}`,
+//         ""
+//       )
+//       if (i++ < items.length - 1) {
+//         narrowString += ","
+//       }
+//     }
+//   }
+
+//   return narrowString
+// }
+// function parseNarrow(narrowString) {
+//   // split the words and clean up, make sure upper case stays as filters might be case sensitive
+//   const words = narrowString.split(",")
+
+//   // broken term - return
+//   if (words.length % 2 !== 0) {
+//     return {}
+//   }
+
+//   // split the string into pairs of [name, value] so we could format them into a Narrow object
+//   const pairs = []
+//   for (let i = 0; i < words.length; i += 2) {
+//     if (!isValidHTML(words[i + 1])) {
+//       pairs.push([words[i], words[i + 1]])
+//     }
+//   }
+
+//   // create the narrow object
+//   return pairs.reduce((previousValue, currentValue) => {
+//     const [name, value] = currentValue
+//     if (name in previousValue) {
+//       previousValue[name].add(value)
+//     } else {
+//       previousValue[name] = new Set([value])
+//     }
+
+//     return previousValue
+//   }, {})
+// }
 // Function to load the state of filters checkboxes
 function loadCheckboxState() {
   // const checkboxState = JSON.parse(url.searchParams.get('checkboxState'));
-  const checkboxState = JSON.parse(url.searchParams.get('checkboxState'));
+  const checkboxState = JSON.parse(url.searchParams.get(filtersUrlParam));
 
   if (checkboxState) {
     const checkboxes = document.querySelectorAll('.fs_filter_checkbox');
 
     checkboxes.forEach((checkbox) => {
-      checkbox.checked = checkboxState[checkbox.value] || false;
+      let checked = false;
+      checkboxState.forEach(element => {
+        element.forEach(el => {
+          if(el == checkbox.value) {
+            checked = true;
+          }
+        });
+      });
+      // checkbox.checked = checkboxState[checkbox.value] || false;
+      checkbox.checked = checked;
     });
   }
 }
@@ -86,16 +149,19 @@ function createPriceSlider() {
   // setTimeout(() => {
   // }, 100);
 
-
+  let priceSetTimeout = 0;
   // Function to update the URL query parameters
   function updatePriceRangeParams() {
-    setTimeout(() => {
+    clearTimeout(priceSetTimeout);
+    priceSetTimeout = setTimeout(() => {
       const minPriceValue = fromInput.value;
       const maxPriceValue = toInput.value;
-      url.searchParams.set('min_price', minPriceValue);
-      url.searchParams.set('max_price', maxPriceValue);
-      window.history.replaceState(null, null, url.toString());
-    }, 100);
+      // url.searchParams.set('min_price', minPriceValue);
+      // url.searchParams.set('max_price', maxPriceValue);
+      // window.history.replaceState(null, null, url.toString());
+      setUrlParam('min_price', minPriceValue, false);
+      setUrlParam('max_price', maxPriceValue);
+    }, 500);
 
   }
 
@@ -313,13 +379,15 @@ function displayFilters(facets) {
 
           // Update the URL query parameters with the updated colors list
           if (existingColors.size) {
-            url.searchParams.set('color', Array.from(existingColors));
+            // url.searchParams.set('color', Array.from(existingColors));
+            setUrlParam('color', Array.from(existingColors));
           } else {
-            url.searchParams.delete('color');
+            // url.searchParams.delete('color');
+            removeUrlParam('color');
           }
 
           // Update the URL in the browser's address bar
-          window.history.replaceState(null, null, url.toString());
+          // window.history.replaceState(null, null, url.toString());
         });
 
         // Add the color swatch to the container
