@@ -44,13 +44,17 @@
   }
   searchForm.addEventListener('submit', function (event) {
     event.preventDefault();
-    searchResultsContainer.classList.add('fs_search');
-    if (searchResultsContainer.classList.contains('fs_collections')) {
-      searchResultsContainer.classList.remove('fs_collections');
+    if(turboLinkUrl) {
+      window.location.href = turboLinkUrl;
+    } else {
+      searchResultsContainer.classList.add('fs_search');
+      if (searchResultsContainer.classList.contains('fs_collections')) {
+        searchResultsContainer.classList.remove('fs_collections');
+      }
+      const searchTerm = searchInput.value;
+      clearFilters();
+      setUrlParam('search', searchTerm);
+      currentNarrow = [];
     }
-    const searchTerm = searchInput.value;
-    clearFilters();
-    setUrlParam('search', searchTerm);
-    currentNarrow = [];
 
   });

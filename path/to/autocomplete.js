@@ -9,15 +9,16 @@ searchInput.addEventListener('input', function (event) {
         query: searchTerm,
         callback: (response) => {
             console.log(response);
-            displayAutocomplete(response.payload);
+            displayAutocomplete(response.payload, searchTerm);
         }
     });
     console.log(searchTerm);
 });
 let linksContainer = document.createElement('div');
-function displayAutocomplete(response) {
+function displayAutocomplete(response, searchTerm) {
     productList.innerHTML = '';
     linksContainer.innerHTML = '';
+    turboLinkUrl = false;
     // Add products to the modal
     response.products.forEach(function (product) {
         // Create a container for each product
@@ -154,6 +155,10 @@ function displayAutocomplete(response) {
                     turboLink.href = turbolink.u;
                     turboLink.target = '_blank';
                     turboLinks.appendChild(turboLink);
+                    //save url for quick submit
+                    if(turbolink.l.toLowerCase() == searchTerm.toLowerCase()) {
+                        turboLinkUrl = turbolink.u;
+                    }
                     counter++;
                 }
             });
@@ -161,7 +166,7 @@ function displayAutocomplete(response) {
         }
     }
     // Show the modal
-    if (response.products.length > 0) {
+    if (response.products.length > 0 || response.turbolinks.length > 0 ) {
         productModal.style.display = 'block';
     } else {
         productModal.style.display = 'none';

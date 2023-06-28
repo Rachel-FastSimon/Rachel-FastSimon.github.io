@@ -16,6 +16,7 @@ function saveCheckboxState() {
       if (checkbox.checked) {
         let key = checkbox.getAttribute("key");
         let value = checkbox.getAttribute("value");
+        // setUrlParam(key, value);
         let selectedFilters = [];
         selectedFilters.push(key);
         selectedFilters.push(value);
@@ -27,6 +28,8 @@ function saveCheckboxState() {
 
   url.searchParams.set('checkboxState', JSON.stringify(checkboxState));
   url.searchParams.set('checkboxState2', JSON.stringify(checkboxState2));
+  console.log('checkboxState2', checkboxState2);
+  console.log('checkboxState2', JSON.stringify(checkboxState2));
   // Update the URL in the browser's address bar
   window.history.replaceState(null, null, url.toString());
 

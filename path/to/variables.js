@@ -7,6 +7,7 @@ let searchResults;;
 let minPrice;
 let maxPrice;
 let priceSlider;
+let turboLinkUrl = false;
 
 
 
