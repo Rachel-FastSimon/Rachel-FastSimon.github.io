@@ -27,7 +27,7 @@ function saveCheckboxState() {
   });
 
   url.searchParams.set('checkboxState', JSON.stringify(checkboxState));
-  url.searchParams.set('checkboxState2', JSON.stringify(checkboxState2));
+  // url.searchParams.set('checkboxState2', JSON.stringify(checkboxState2));
   console.log('checkboxState2', checkboxState2);
   console.log('checkboxState2', JSON.stringify(checkboxState2));
   // Update the URL in the browser's address bar
@@ -37,6 +37,7 @@ function saveCheckboxState() {
 
 // Function to load the state of filters checkboxes
 function loadCheckboxState() {
+  // const checkboxState = JSON.parse(url.searchParams.get('checkboxState'));
   const checkboxState = JSON.parse(url.searchParams.get('checkboxState'));
 
   if (checkboxState) {
@@ -400,7 +401,7 @@ function displayFilters(facets) {
     }
     saveCheckboxState();
   }
-  loadCheckboxState();
+  // loadCheckboxState();
 }
 
 let refreshResultTimeout = 0;

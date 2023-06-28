@@ -30,6 +30,7 @@
           displaySearchResults(searchResults, searchResultsContainer, searchPageTitle);
           console.log('products only');
         }
+        afterInit();
       }
     });
     //Search Result page viewed event

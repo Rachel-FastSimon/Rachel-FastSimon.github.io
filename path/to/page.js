@@ -19,6 +19,10 @@ function initPage() {
     }
 }
 
+function afterInit() {
+    loadCheckboxState();
+}
+
 //listening for changes in the URL
 var _wr = function (type) {
     var orig = history[type];

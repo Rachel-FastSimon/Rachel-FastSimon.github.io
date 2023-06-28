@@ -33,6 +33,7 @@
           console.log('products only');
           displaySearchResults(collectionResults, searchResultsContainer, collectionTitle);
         }
+        afterInit();
       }
     });
     //Collection Viewed event
