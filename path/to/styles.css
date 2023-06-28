@@ -1,11 +1,4 @@
-@font-face {
-    font-family: 'Gotham-Book';
-    /* src: url('../../fonts/1826-font.otf') format('otf'); */
-    src: url('/fonts/1826-font.otf') format('opentype');
-}
-
 * {
-    /* font-family: 'Gotham-Book', sans-serif !important; */
     font-family: 'Abel', serif;
     color: #212529;
 }
